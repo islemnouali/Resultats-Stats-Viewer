@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% load static %}
+{% load custom_filters %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Generale</title>
+        <link rel="stylesheet" href="{%static 'css/general.css'%}">
+    </head>
+    <body>
+        <!-- <h1>Statistiques</h1> -->
+        <div class="container">
+
+            <div class="top_10">
+                <h3>Top 15</h3>
+                <ol>
+                    {% for etu in top_10 %}
+                    <li>{{ etu|get_item:"Nom et prénom" }} ({{ etu|get_item:"Moyenne du semestre 2" }})-{{ etu|get_item:"Groupe" }}</li>
+                    {% endfor %}
+                </ol>
+            </div>
+            <div class="mid">
+
+                <div class="info">
+                     <p><span>Semestre 2</span></p>
+                    <p>Admis: {{ valide_count }} / {{ total_count }}</p>
+                    <p>Moyenne générale: {{ avg_moyenne2|floatformat:2 }}</p>
+                    <p>Crédit moyen: {{ avg_credit2|floatformat:2 }}</p>
+                    
+                    {% if top_1 %}
+                    <p><span>Top 1</span>: {{ top_1|get_item:"Nom et prénom" }} ({{ top_1|get_item:"Moyenne du semestre 2" }})</p>
+                    {% else %}
+                    <p><span>Top 1</span>: Aucun étudiant disponible</p>
+                    {% endif %}
+                </div>
+                
+                <div class="success-rate">
+                    <h3>Taux de Validation - Semestre 2</h3>
+                    <div class="rate-metrics">
+                        <div class="rate-card success">
+                            <p>Validés</p>
+                            <h2>{% widthratio valide_count total_count 100 %}%</h2>
+                        </div>
+                        <div class="rate-card failure">
+                            <p>Non Validés</p>
+                            <h2>{% widthratio failure_count total_count 100 %}%</h2>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+             <div id="stats-section">
+                <canvas id="sem2PieChart" width="400" height="200"></canvas>
+            </div>
+            {{ stats_data|json_script:"stats-data" }}
+            
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="{% static 'js/etudiants.js' %}"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

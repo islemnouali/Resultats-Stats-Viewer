@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Étudiants</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="table-container" id="tableContainer">
+        <table>
+            {% if columns %}
+            <thead>
+                <tr>
+                    {% for col in columns %}
+                        <th>{{ col }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in excel_data %}
+                <tr>
+                    {% for cell in row %}
+                        <td>{{ cell }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+            {% else %}
+            <tbody>
+                <tr><td colspan="20">Aucun fichier Excel trouvé dans le dossier racine.</td></tr>
+            </tbody>
+            {% endif %}
+        </table>
+    </div>
+     <div class="expand-btn-group">
+        <button class="expand-btn"c onclick="window.location.href='/etudiants/'">Statistiques Générales</button>
+        <button class="expand-btn"c onclick="window.location.href='/sem1/'">Statistiques Semestre 1 </button>
+        <button class="expand-btn"c onclick="window.location.href='/sem2/'">Statistiques Semestre 2</button>
+    </div>
+    <script src="{% static 'js/etudiants.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Uploader un PDF de Résultats</title>
+        <link rel="stylesheet" href="{% static 'css/upload.css' %}">
+        
+    </head>
+    <body>
+        <div class="container">
+            <h1>Télécharger le fichier PDF des résultats</h1>
+            <form method="POST" enctype="multipart/form-data" class="upload-form">
+                {% csrf_token %}
+                <div class="custom-file-input">
+                    <label for="pdf_file" class="custom-btn">Choisissez un fichier PDF des resultats:</label>
+                    <input type="file" name="pdf_file" accept=".pdf" required />
+                    <button type="submit">Analyser Les Résultats</button>
+                </div>
+
+                {% if error %}
+                <p style="color: red">{{ error }}</p>
+                {% endif %}
+            </form>
+        </div>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
-# Install Java (OpenJDK 17)
-sudo apt update
-sudo apt install -y openjdk-17-jdk
+# Download and extract OpenJDK 17
+mkdir -p ~/.java
+curl -L -o openjdk.tar.gz https://download.bell-sw.com/java/17.0.11+9/bellsoft-jdk17.0.11+9-linux-amd64.tar.gz
+tar -xzf openjdk.tar.gz -C ~/.java --strip-components=1
 
-# Set JAVA_HOME for Render
-export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+# Set JAVA_HOME and update PATH
+export JAVA_HOME="$HOME/.java"
+export PATH="$JAVA_HOME/bin:$PATH"
 
-# Optional: confirm Java installed
+# Confirm it works
 java -version

@@ -1,25 +1,22 @@
-#!/bin/bash
-# Render-compatible Java installation for tabula-py
+#!/usr/bin/env bash
+set -o errexit
 
-# 1. Download and extract Adoptium Temurin JDK 17 (smallest reliable JRE)
-curl -L https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.11+9/OpenJDK17U-jre_x64_linux_hotspot_17.0.11_9.tar.gz -o jre.tar.gz
-mkdir -p /opt/java
-tar -xzf jre.tar.gz -C /opt/java --strip-components=1
-rm jre.tar.gz
+# Download and extract Java to /tmp/java
+mkdir -p /tmp/java
+curl -L -o /tmp/openjdk.tar.gz https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz
+tar -xzf /tmp/openjdk.tar.gz -C /tmp/java --strip-components=1
 
-# 2. Set Java environment variables
-export JAVA_HOME=/opt/java
+# Set JAVA_HOME for the build process
+export JAVA_HOME=/tmp/java
 export PATH=$JAVA_HOME/bin:$PATH
 export LD_LIBRARY_PATH=$JAVA_HOME/lib/server:$LD_LIBRARY_PATH
 
-# 3. Verify installation
+# Check if java is installed correctly
 echo "Java version:"
 $JAVA_HOME/bin/java -version
-echo "JVM library:"
-ls -la $JAVA_HOME/lib/server/libjvm.so
 
-# 4. Install Python dependencies
-pip install -r requirements.txt
+# Install Python deps
+poetry install --no-root
 
-# 5. Collect static files
+# Run collectstatic if needed
 python manage.py collectstatic --noinput

@@ -6,8 +6,8 @@ from PyPDF2 import PdfReader
 from tabula.io import read_pdf
 import re
 import tempfile
-os.environ['JAVA_HOME'] = '/opt/java'
-os.environ['LD_LIBRARY_PATH'] = '/opt/java/lib/server'
+os.environ["JAVA_HOME"] = "/tmp/java"
+os.environ["LD_LIBRARY_PATH"] = "/tmp/java/lib/server"
 
 def etudiant_list(request):
     if request.method == 'POST':

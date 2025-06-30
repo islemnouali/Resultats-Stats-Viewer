@@ -12,7 +12,8 @@ from tabula.io import read_pdf
 from django.shortcuts import render
 from django.db.models import Avg
 import pandas as pd
-
+os.environ['JAVA_HOME'] = '/opt/java'
+os.environ['LD_LIBRARY_PATH'] = '/opt/java/lib/server'
 
 def get_etudiants_df_from_session(request):
     data = request.session.get('etudiants_data')

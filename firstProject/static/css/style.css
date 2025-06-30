@@ -28,14 +28,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.main-center-wrapper {
-  width: 100%;
-  max-width: 1280px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
 
 /* Button Group */
 .expand-btn-group {
@@ -70,13 +62,13 @@ body {
 
 /* Table Container */
 .table-container {
-  max-width: 900px;
+  width: 90vw;
+  height: 90vh;
   margin: 2vh auto 2rem;
   background: var(--primary-bg);
   border-radius: 5px;
   box-shadow: 0 1px 4px rgba(40, 44, 52, 0.08);
   overflow: auto;
-  max-height: 400px;
   transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid #e0e0e0;
   scrollbar-gutter: stable;
@@ -88,14 +80,13 @@ body {
 table {
   border-collapse: collapse;
   width: 100%;
-  min-width: 800px;
   background-color: var(--primary-bg);
 }
 
 thead th {
   position: sticky;
   top: 0;
-  background: #1E1F1F;
+  background: #1f1e1e;
   color: var(--primary-bg);
   text-align: center;
   font-weight: 500;

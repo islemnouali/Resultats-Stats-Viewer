@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+    <div style="position: absolute; top: 20px; left: 20px; z-index: 1000;">
+        <a href="javascript:history.back()" style="font-weight: bold; font-size: 2rem; color: #222; text-decoration: none; cursor: pointer;">&#8592;</a>
+    </div>
     <div class="table-container" id="tableContainer">
         <table>
             {% if columns %}
@@ -33,6 +36,7 @@
             {% endif %}
         </table>
     </div>
+    
      <div class="expand-btn-group">
         <button class="expand-btn"c onclick="window.location.href='/etudiants/'">Statistiques Générales</button>
         <button class="expand-btn"c onclick="window.location.href='/sem1/'">Statistiques Semestre 1 </button>

@@ -21,6 +21,7 @@ db.sqlite3
 # Ignore OS system files
 .DS_Store
 Thumbs.db
+<<<<<<< HEAD
 
 
 
@@ -34,3 +35,5 @@ venv/
 # Large PDFs
 *.pdf
 temp/
+=======
+>>>>>>> 0a2444f885e4267a5b1c34bd0d5a575057dcdd4a

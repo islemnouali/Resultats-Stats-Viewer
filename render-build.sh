@@ -1,22 +1,28 @@
 #!/usr/bin/env bash
 set -o errexit
 
-# Download and extract Java to /tmp/java
+echo "Downloading Java..."
+
+# Create temp java directory
 mkdir -p /tmp/java
-curl -L -o /tmp/openjdk.tar.gz https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz
+
+# Use a direct link to Adoptium (Eclipse Temurin) JDK 17 tar.gz
+curl -L -o /tmp/openjdk.tar.gz https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.11%2B9/OpenJDK17U-jdk_x64_linux_hotspot_17.0.11_9.tar.gz
+
+# Extract Java to /tmp/java
 tar -xzf /tmp/openjdk.tar.gz -C /tmp/java --strip-components=1
 
-# Set JAVA_HOME for the build process
+# Export Java paths
 export JAVA_HOME=/tmp/java
 export PATH=$JAVA_HOME/bin:$PATH
 export LD_LIBRARY_PATH=$JAVA_HOME/lib/server:$LD_LIBRARY_PATH
 
-# Check if java is installed correctly
+# Confirm installation
 echo "Java version:"
 $JAVA_HOME/bin/java -version
 
-# Install Python deps
+# Install python dependencies using Poetry
 poetry install --no-root
 
-# Run collectstatic if needed
+# Django static files
 python manage.py collectstatic --noinput

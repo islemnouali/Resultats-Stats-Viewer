@@ -1,5 +1,5 @@
 #!/bin/bash
-# Install Java
+# Install OpenJDK 11
 apt-get update && apt-get install -y openjdk-11-jdk
 
 # Install Python dependencies

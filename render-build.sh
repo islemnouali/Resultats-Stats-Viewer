@@ -8,9 +8,9 @@ curl -L -o openjdk.tar.gz https://github.com/adoptium/temurin17-binaries/release
 # Extract it
 tar -xzf openjdk.tar.gz -C ~/.java --strip-components=1
 
-# Set JAVA_HOME and PATH
 export JAVA_HOME="$HOME/.java"
 export PATH="$JAVA_HOME/bin:$PATH"
 
-# Confirm installation
-java -version
+echo "JAVA_HOME is $JAVA_HOME"
+ls $JAVA_HOME/lib/server
+

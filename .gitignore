@@ -21,3 +21,5 @@ db.sqlite3
 # Ignore OS system files
 .DS_Store
 Thumbs.db
+
+openjdk.tar.gz

@@ -1,8 +1,7 @@
-#!/usr/bin/env bash
-# Install OpenJDK 11 (recommended for stability)
+#!/bin/bash
+# Install Java
 apt-get update && apt-get install -y openjdk-11-jdk
 
-# Verify installation (optional, helps debug)
-java -version
-javac -version
-
+# Install Python dependencies
+pip install -r requirements.txt
+python manage.py collectstatic --noinput
